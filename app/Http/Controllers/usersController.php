@@ -42,5 +42,18 @@ class usersController extends Controller
         // Return response
         return response()->json(['message' => 'User created successfully!', 'employee' => $employee], 201);
     }
+
+    public function softDelete($id)
+    {
+        $employee = Employee::find($id);
+
+        // Check if the employee exists
+        if (!$employee) {
+            return response()->json(['message' => 'Employee not found'], 404);
+        }
+
+        $employee->delete();
+        return response()->json(['message' => 'Employee soft deleted successfully'], 200);
+    }
     //
 }
