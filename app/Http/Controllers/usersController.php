@@ -55,5 +55,13 @@ class usersController extends Controller
         $employee->delete();
         return response()->json(['message' => 'Employee soft deleted successfully'], 200);
     }
-    //
+
+    public function requestAll()
+    {
+        $employees = Employee::all();
+        return response()->json([
+            'message' => 'Employees retrieved successfully',
+            'employees' => $employees
+            ]);
+    }
 }

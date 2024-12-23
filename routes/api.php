@@ -27,6 +27,8 @@ Route::post('/dummy', [usersController::class, 'store']);
 Route::post('/employees', [usersController::class, 'create']);
 Route::delete('/employees/{id}', [usersController::class, 'softDelete']);
 
+Route::get('/requestAll', [usersController::class, 'requestAll']);
+
 ?>
 
 
