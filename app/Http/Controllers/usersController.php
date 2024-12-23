@@ -30,6 +30,7 @@ class usersController extends Controller
             'name' => 'required|string|max:100',
             'email' => 'required|email|unique:employees,email',
             'phone' => 'nullable|string|max:15',
+            'type' => 'enum:employee,admin'
         ]);
 
         // Create new employee and save database
