@@ -24,6 +24,6 @@ use App\Http\Controllers\usersController;
 Route::get('/dummy', [usersController::class, 'index']);
 Route::post('/dummy', [usersController::class, 'store']);
 
-// Or if you're using an API route:
-// Route::get('/api/dummy', [DummyController::class, 'index']);
+Route::post('/employees', [usersController::class, 'create']);
+
 
