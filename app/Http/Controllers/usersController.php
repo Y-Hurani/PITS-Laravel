@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
-
+use App\Http\Requests\StoreEmployeeRequest;
+use Illuminate\Auth\Events\Validated;
 
 class usersController extends Controller
 {
@@ -24,14 +25,9 @@ class usersController extends Controller
     }
 
     // insert an employee
-    public function create(Request $request)
+    public function create(StoreEmployeeRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:100',
-            'email' => 'required|email|unique:employees,email',
-            'phone' => 'nullable|string|max:15',
-            'type' => 'enum:employee,admin'
-        ]);
+        $validated = $request;
 
         // Create new employee and save database
         $employee = new Employee();

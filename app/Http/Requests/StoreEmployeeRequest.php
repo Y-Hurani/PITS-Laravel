@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enum\UserLevel;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class StoreEmployeeRequest extends FormRequest
 {
@@ -24,7 +26,16 @@ class StoreEmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'level' => [new Enum(UserLevel::class)],
+            'name' => 'required|string|max:100',
+            'email' => 'required|email|unique:employees,email',
+            'phone' => 'nullable|string|max:15'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'level.required' => 'The level field is required.',
         ];
     }
 }
