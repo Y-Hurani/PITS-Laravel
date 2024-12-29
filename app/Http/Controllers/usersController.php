@@ -28,7 +28,6 @@ class usersController extends Controller
     public function create(StoreEmployeeRequest $request)
     {
         $validated = $request;
-
         // Create new employee and save database
         $employee = new Employee();
         $employee->name = $validated['name'];

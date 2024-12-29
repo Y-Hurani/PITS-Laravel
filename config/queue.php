@@ -41,6 +41,21 @@ return [
             'retry_after' => 90,
             'after_commit' => false,
         ],
+            'database_high' => [
+            'driver' => 'database',
+            'table' => 'jobs',
+            'queue' => 'high', // High priority queue
+            'retry_after' => 90,
+            'after_commit' => false,
+        ],
+
+        'database_low' => [
+            'driver' => 'database',
+            'table' => 'jobs',
+            'queue' => 'low', // Low priority queue
+            'retry_after' => 90,
+            'after_commit' => false,
+        ],
 
         'beanstalkd' => [
             'driver' => 'beanstalkd',
