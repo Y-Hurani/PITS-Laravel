@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Artisan;
 
-class DummyWait5Job implements ShouldQueue
+class DummyWait7Job implements ShouldQueue
 {
     use Queueable;
 
@@ -28,9 +28,9 @@ class DummyWait5Job implements ShouldQueue
     public function handle()
     {
         // Simulate a long task (5 seconds delay)
-        sleep(5); // Sleep for 5 seconds
+        sleep(7); // Sleep for 5 seconds
         
         // Log that the job is completed
-        Log::info('DummyJob 5 has been completed!');
+        Log::info('DummyJob 7 has been completed!');
     }
 }
