@@ -18,11 +18,11 @@ class Controller extends BaseController
     public function dispatchDummy() {
 
         Bus::batch([
-            (new DummyWait5Job())->onQueue('low'),
-            (new DummyWait5Job())->onQueue('low'),
-            (new DummyWait5Job())->onQueue('low'),
-            (new DummyWait5Job())->onQueue('low')
-        ])->then(function () {
+            (new DummyWait5Job()),
+            (new DummyWait5Job()),
+            (new DummyWait5Job()),
+            (new DummyWait5Job())
+        ])->onQueue('low')->then(function () {
             dispatch((new DummyWait7Job())->onQueue('low'));
         })->catch(function ($exception) {
             return response()->json(['error' => $exception->getMessage()], 500);
