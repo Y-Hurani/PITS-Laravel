@@ -16,10 +16,10 @@ class Controller extends BaseController
     public function dispatchDummy() {
 
         Bus::chain([
-            new DummyWait5Job(),
-            new DummyWait5Job(),
-            new DummyWait5Job()
-        ])->dispatch()->onQueue('low');
+            (new DummyWait5Job())->onQueue('low'),
+            (new DummyWait5Job())->onQueue('low'),
+            (new DummyWait5Job())->onQueue('low')
+        ])->dispatch();
 
         /*dispatch((new DummyWait5Job())->onQueue('low')->chain([
             new DummyWait5Job(),
