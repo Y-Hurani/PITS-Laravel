@@ -13,7 +13,7 @@ use Illuminate\Bus\Batchable;
 
 class DummyWait5Job implements ShouldQueue
 {
-    use Queueable;
+    use Queueable, Batchable;
 
     /**
      * Create a new job instance.
