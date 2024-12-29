@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 use App\Http\Controllers\usersController;
+use App\Http\Controllers\Controller;
 
 // Web routes (for browser requests)
 Route::get('/dummy', [usersController::class, 'index']);
@@ -28,6 +29,8 @@ Route::post('/employees', [usersController::class, 'create']);
 Route::delete('/employees/{id}', [usersController::class, 'softDelete']);
 
 Route::get('/requestAll', [usersController::class, 'requestAll']);
+
+Route::get('/dummy5Second', [Controller::class, 'dispatchDummy']);
 
 ?>
 
