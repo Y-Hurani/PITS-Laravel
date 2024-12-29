@@ -14,11 +14,11 @@ class Controller extends BaseController
 
     public function dispatchDummy() {
 
-        dispatch(new DummyWait5Job())->onQueue('low')->chain([
+        dispatch((new DummyWait5Job())->onQueue('low')->chain([
             new DummyWait5Job(),
             new DummyWait5Job(),
             new DummyWait5Job()
-        ]);
+        ]));
         dispatch(new DummyWait5Job())->onQueue('high');
         return response()->json(['status' => 'Job dispatched!']);
     }
