@@ -22,17 +22,16 @@ class Controller extends BaseController
             (new DummyWait5Job())->onQueue('low'),
             (new DummyWait5Job())->onQueue('low'),
             (new DummyWait5Job())->onQueue('low')
-        ])->then(
-            (new DummyWait7Job())->onQueue('low')
-        )->catch(
-            function ($exception) {
-                return response()->json(['error' => $exception->getMessage()], 500);
-            }
-        )->finally(
-            function () {
-                Log::info('Batch has been completed!');
-            }
-        )->dispatch();
+        ])->then(function () {
+            dispatch((new DummyWait7Job())->onQueue('low'));
+        })->catch(function ($exception) {
+            return response()->json(['error' => $exception->getMessage()], 500);
+        })->finally(function () {
+            Log::info('Batch has been completed!');
+        })->dispatch();
+    
+        return response()->json(['status' => 'Batch of jobs dispatched!']);
+    }
 
         /*dispatch((new DummyWait5Job())->onQueue('low')->chain([
             new DummyWait5Job(),
@@ -42,5 +41,3 @@ class Controller extends BaseController
         dispatch(new DummyWait5Job())->onQueue('high');
         return response()->json(['status' => 'Job dispatched!']);*/
     }
-    
-}
