@@ -19,7 +19,7 @@ class Controller extends BaseController
             new DummyWait5Job(),
             new DummyWait5Job(),
             new DummyWait5Job()
-        ])->dispatch();
+        ])->dispatch()->onQueue('low');
 
         /*dispatch((new DummyWait5Job())->onQueue('low')->chain([
             new DummyWait5Job(),
