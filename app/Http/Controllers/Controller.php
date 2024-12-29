@@ -24,6 +24,7 @@ class Controller extends BaseController
             (new DummyWait5Job())
         ])->onQueue('low')->then(function () {
             dispatch(new DummyWait7Job())->onQueue('low');
+            Log::info('All DummyWait5Job completed, dispatching DummyWait7Job...');
         })->catch(function ($exception) {
             return response()->json(['error' => $exception->getMessage()], 500);
         })->finally(function () {
