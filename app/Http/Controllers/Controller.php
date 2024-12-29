@@ -13,7 +13,12 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function dispatchDummy() {
-        dispatch(new DummyWait5Job())->onQueue('low');
+
+        dispatch(new DummyWait5Job())->onQueue('low')->chain([
+            new DummyWait5Job(),
+            new DummyWait5Job(),
+            new DummyWait5Job()
+        ]);
         dispatch(new DummyWait5Job())->onQueue('high');
         return response()->json(['status' => 'Job dispatched!']);
     }
